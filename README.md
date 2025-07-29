@@ -28,4 +28,6 @@ NODE_OPTIONS='--openssl-legacy-provider' yarn build
 - docsディレクトリに成果物ができているので、mainブランチにコミットしてプッシュ 
 
 ## 演習環境
-- AWSのみ
+- AWSでのみ実施可能
+### 演習環境構築
+
