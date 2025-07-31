@@ -2,10 +2,10 @@
 
 sudo systemctl stop nginx
 
-lxc exec web -- sudo systemctl stop httpd
-lxc exec web -- sudo systemctl disable httpd
-lxc exec web -- sudo yes > /dev/null &
-lxc exec web -- sudo sed -i s/^DocumentRoot/ocumentRoot/ /etc/httpd/conf/httpd.conf
+lxc exec app -- sudo systemctl stop httpd
+lxc exec app -- sudo systemctl disable httpd
+lxc exec app -- sudo yes > /dev/null &
+lxc exec app -- sudo sed -i s/^DocumentRoot/ocumentRoot/ /etc/httpd/conf/httpd.conf
 
 lxc exec db -- sudo ip link set eth0 down
 lxc exec db -- sudo systemctl stop mariadb
