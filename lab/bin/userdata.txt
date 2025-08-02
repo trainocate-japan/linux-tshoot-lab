@@ -1,6 +1,31 @@
+#!/bin/sh
+
+sudo docker run -d --name=netdata \
+  --pid=host \
+  --network=host \
+  -v netdataconfig:/etc/netdata \
+  -v netdatalib:/var/lib/netdata \
+  -v netdatacache:/var/cache/netdata \
+  -v /:/host/root:ro,rslave \
+  -v /etc/passwd:/host/etc/passwd:ro \
+  -v /etc/group:/host/etc/group:ro \
+  -v /etc/localtime:/etc/localtime:ro \
+  -v /proc:/host/proc:ro \
+  -v /sys:/host/sys:ro \
+  -v /etc/os-release:/host/etc/os-release:ro \
+  -v /var/log:/host/var/log:ro \
+  -v /var/run/docker.sock:/var/run/docker.sock:ro \
+  -v /run/dbus:/run/dbus:ro \
+  --restart unless-stopped \
+  --cap-add SYS_PTRACE \
+  --cap-add SYS_ADMIN \
+  --security-opt apparmor=unconfined \
+  netdata/netdata
+
 cat << EOF > /home/ec2-user/init.sh
 #!/bin/sh
 rm -rf ./linux-tshoot-lab
-git https://github.com/trainocate-japan/linux-tshoot-lab.git > /dev/null
+git clone https://github.com/trainocate-japan/linux-tshoot-lab.git
 sh linux-tshoot-lab/lab/bin/db.sh
 EOF
+chown ec2-user:ec2-user /home/ec2-user/init.sh

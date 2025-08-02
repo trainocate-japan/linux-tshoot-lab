@@ -1,5 +1,0 @@
-#!/bin/sh
-
-rm -rf ./linux-tshoot-lab
-git https://github.com/trainocate-japan/linux-tshoot-lab.git
-sh linux-tshoot-lab/lab/bin/db.sh
