@@ -4,8 +4,9 @@ sidebar: auto
 
 講師向けガイド
 ==
-
-- この資料やシェルスクリプトなどのソースコードは [github:linux-tshoot-lab](https://github.com/trainocate-japan/linux-tshoot-lab) で管理しています
+###### v25.08.04.01
+- この資料やシェルスクリプトなどのソースコードは [github:linux-tshoot-lab](https://github.com/trainocate-japan/linux-tshoot-lab) で管理しており、講師用マシンのホームディレクトリにclone済みです
+- スクリプトなどが追加されることがあるので、ログイン時にgit pull してもらうとよいと思います
 ## コース概要
 - Linuxで稼働しているシステムに発生するシステムトラブルの種類や対応できるコマンドの紹介や、システムトラブル対応の基礎を学ぶコースです
 - コースは2日構成です。1日目はトラブル対応に関連する知識を学ぶ座学で、2日目はトラブル解決を実践する演習を行います
@@ -96,14 +97,16 @@ sidebar: auto
 ### linux-tshoot-instructor-machine（講師用端末・構成図外）
 - SessionManagerでログイン後、su - ec2-user (pasword)
 ```
-[ec2-user@ip-10-0-128-136 ~]$ tree -L 2 .
-.
-├── checker.sh
+[ec2-user@ip-10-0-128-136 ~]$ tree -L 1 linux-tshoot-lab/lab/bin/instructor-machine/
+linux-tshoot-lab/lab/bin/instructor-machine/
+├── cheker.sh
 ├── public-address-getter.sh
+├── reboot-instance.sh
 ├── repaierman-on-instructor-machine.sh
-├── trouble-maker-on-instructor-machine.sh
-└── urls.csv
+└── trouble-maker-on-instructor-machine.sh
 ```
+- 主要なファイルはホームディレクトリにコピーしてますが、新規に追加されたスクリプトなどはやってないかも、、、です
+- スクリプトに実行権限つけるとgit pull時に差分でできないかもしれないのでご注意を、、、（git config core.filemode falseはやってません）
 #### 外形監視（受講者Weサイトの状態確認）
 - public-address-getter.sh で、受講者WebサイトのURLを urls.csvに保存します
 - checker.sh urls.csv を実行すると、受講者Webサイトの接続可否が表示されます
@@ -112,7 +115,9 @@ sidebar: auto
 - trouble-maker-on-instructor-machine.sh で、受講者環境にトラブルを発生させます。DBコンテナのストレージ圧迫とNICダウンは自動化するとまれに実施できないインスタンスがあるため、受講者ホストにあるinit.shに分離し、受講者自身に実施してもらうことにしてます
   - 実行後にCommandIDが表示されるので、進捗確認にお使いください
 - repaierman-on-instructor-machine.shを実行すると全受講者のWebサイトが復旧します
-
+#### 受講者インスタンスのリブート
+- reboot-instance.sh の引数に対象のプライベートアドレスを渡して実行するとインスタンスをリブートします
+- 予備機を払い出す前にリブートを試してみても良いかもしれません
 ## トラブルの発生方法について
 - 2段階に分かれています。流れは後述の「コースの進め方」を参考にしてください
 1. AWSの運用サービスであるSSM RunCommandを使って、インスタンスの外部から以下のシェルスクリプトを注入して実行します
@@ -211,9 +216,14 @@ sidebar: auto
 #### 起動テンプレート(受講者ホスト)
 - linux-tshoot-newtrain2025
 - ユーザーデータでnetdataコンテナの起動とinit.shの設定をしてます
-#### 講師用ホストAMI
-- linux-tshoot-instructor-machine.v250802.01
-- 頻繁に起動するわけではないので、起動テンプレートはありません
+#### 講師用ホスト起動テンプレート
+- linux-tshoot-newtrain2025-instructor-machine
+- AL2023にタグつけて、コースのGitリポジトリをクローンしてるだけです
+- 以下、未対応なので、インスタンス入れ替え時に対応が必要
+  - Ec2LinuxBasicRoleつけ忘れ
+  - ec2-userのパスワード変更とSSHのパスワードログイン許可
+  - git clone https://github.com/trainocate-japan/linux-tshoot-lab.git
+  - 講師用コマンドは、linux-tshoot-lab/lab/bin/instructor-machine/以下にある
 ### わかもれ（Apache Guacamole）
 - asg guacamole-app-asg
 - rds guacamole-app-db
