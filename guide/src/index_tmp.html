@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>index.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E6%BC%94%E7%BF%92%E3%82%AC%E3%82%A4%E3%83%89">演習ガイド</h1>
+<h6 id="v2508041-dev">v25.08.04.1-dev</h6>
+<h2 id="i-%E6%BC%94%E7%BF%92%E3%81%AE%E5%89%8D%E3%81%AB">I. 演習の前に</h2>
+<ul>
+<li>この演習は、Linuxで稼働するWebアプリケーションシステム（以下、Webサイト）に発生したトラブルの解決（トラブルシューティング）を実践する演習です。明確な手順は用意されていないため、実務で発生するトラブルとその解決作業と同様、Linuxコマンドを駆使して手探りでの対応が必要となります</li>
+<li>トラブルシューティングを実践するだけでなく、実務で必要になる障害報告書の作成まで行って頂きます</li>
+</ul>
+<h3 id="%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85">注意事項</h3>
+<ul>
+<li>トラブルシューティングを実践するコースであるため、具体的なトラブルの解決方法（コマンドなど）を受講者間で教え合うことは禁止します。進捗の良い方は、相談を受けたらヒントだけを伝えるようにしてください</li>
+<li>トラブルシューティング中には、該当のサーバーにログインできなかったりサーバーからの応答がない、という、通常の演習とは異なる挙動が見られることがあります。講師に相談する際は、その事象がトラブルによるものなのか、それとも演習環境自体の不具合なのかを説明できるようにしましょう</li>
+</ul>
+<h3 id="%E6%BC%94%E7%BF%92%E7%92%B0%E5%A2%83%E3%81%B8%E3%81%AE%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E6%96%B9%E6%B3%95">演習環境へのログイン方法</h3>
+<blockquote>
+<p>実務で使えるLinux 入門編と同じです</p>
+</blockquote>
+<ul>
+<li>講師（もしくは研修システム）から案内のあった「演習環境への接続情報」で、以下を確認してください
+<ul>
+<li>接続先サイト</li>
+<li>ユーザー名（各自のメールアドレス）</li>
+<li>パスワード</li>
+</ul>
+</li>
+<li>「接続先サイト」へブラウザからアクセスし、ユーザー名（各自のメールアドレス）とパスワードを入力してログインしてください</li>
+<li>しばらく待つと「Login as: 」と聞かれるので、<code>ec2-user</code>と入力してください</li>
+<li>続けて「Password:」と聞かれるので、<code>password</code>と入力してください</li>
+<li>以下のようなメッセージが表示されれば、演習環境へのログインは完了です</li>
+</ul>
+<pre class="hljs"><code><div>Welcome to Ubuntu 24.04.2 LTS (GNU/Linux 6.14.0-1010-aws x86_64)
+（中略）
+ec2-user@ip-X-X-X-X:~ -THISISNOTWORKSPACE- $ 
+</div></code></pre>
+<h2 id="ii-%E6%BC%94%E7%BF%92%E3%81%AE%E6%B5%81%E3%82%8C">II. 演習の流れ</h2>
+<ul>
+<li>演習は、以下の流れで進みます</li>
+</ul>
+<h3 id="1-%E3%82%AA%E3%83%AA%E3%82%A8%E3%83%B3%E3%83%86%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3">1. オリエンテーション</h3>
+<ul>
+<li>演習の概要や目的、環境の説明を 講師から行います。展開される内容は、基本的に本資料に基づきます</li>
+</ul>
+<h3 id="2-%E7%8F%BE%E7%8A%B6%E6%8A%8A%E6%8F%A1">2. 現状把握</h3>
+<ul>
+<li>トラブル発生の前に、現在のWebシステムの構成を調べる時間です。トラブルシューティングをスムースに進められるようにしておきましょう。現状把握の開始タイミングは講師（もしくは研修システム）から指示があります。指示があり次第、後述の「現状把握で実施すること」を確認しながら進めてください</li>
+</ul>
+<h3 id="3%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E5%AE%9F%E8%B7%B5">3.トラブルシューティング実践</h3>
+<ul>
+<li>いよいよトラブルシューティングの実践です。前日の座学やこれまで学んできたことを活かして、トラブルを排除しシステムを復旧させましょう。後述の「トラブルシューティングの実践」を見ながら効率よく進めましょう</li>
+</ul>
+<h3 id="4-%E9%9A%9C%E5%AE%B3%E5%A0%B1%E5%91%8A%E6%9B%B8%E4%BD%9C%E6%88%90">4. 障害報告書作成</h3>
+<ul>
+<li>演習の最後に、トラブルシューティングの記録を報告書に残します。後述の「障害報告書の作成」を見ながら作成してください</li>
+</ul>
+<h2 id="iii-%E7%8F%BE%E7%8A%B6%E6%8A%8A%E6%8F%A1%E3%81%A7%E5%AE%9F%E6%96%BD%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8">III. 現状把握で実施すること</h2>
+<h3 id="1-%E6%A7%8B%E6%88%90%E5%9B%B3%E3%81%AE%E7%A2%BA%E8%AA%8D">1. 構成図の確認</h3>
+<ul>
+<li>構構成に記載されている要素を確認します。これは実務でも同じです。構成図の各要素には番号が振られていますので、以下の説明と合わせて全貌を把握しておきましょう</li>
+<li></li>
+</ul>
+<p><img src="file:///workspaces/linux-tshoot-lab/guide/src/linuxintro-tshoot-structure-student.drawio.svg" alt=""></p>
+<h4 id="1-%E5%8F%97%E8%AC%9B%E8%80%85pc">1) 受講者PC</h4>
+<ul>
+<li>皆さんの手元にあるPCです。演習の実施、ブラウザでのWebサイトの動作確認などに利用します</li>
+</ul>
+<h4 id="2-%E3%83%99%E3%83%BC%E3%82%B9%E3%83%9E%E3%82%B7%E3%83%B3%E6%BC%94%E7%BF%92%E7%92%B0%E5%A2%83">2) ベースマシン（演習環境）</h4>
+<ul>
+<li>ログインしたマシンです。クラウド上の仮想マシンで、演習環境はこの中に構築されています</li>
+<li>Linuxディストリビューションは Ubuntu 24.02 です</li>
+<li>後述のwebサーバーはこのベースマシン上で動作しています</li>
+<li>コマンドプロンプトが<code>ec2-user@ip-X-X-X-X:~ -THISISNOTWORKSPACE- $</code>となっているのが目印です。また、Linuxディストリビューションが「Ubuntu」であるため、これまでの研修で利用していたRed hat系とはコマンド体系が少しことなりますのでご注意ください</li>
+<li>ベースマシンからはインターネットに接続できるので、ソフトウェアのインストールも可能です。ただしディストリビューションが Ubuntu なため、Red Hat系のyum/dnf ではなく apt を使います。ネットなどで調査して使ってください</li>
+</ul>
+<div class="warning">
+<p>インストールするソフトウェアは、Ubuntuの標準リポジトリから追加される標準のものに限ります。また、GUIのツールのインストールはできません</p>
+</div>
+<h4 id="3-%E4%BD%9C%E6%A5%AD%E7%AB%AF%E6%9C%ABworkspace">3) 作業端末（workspace）</h4>
+<ul>
+<li>後述のappサーバーやdbサーバーにSSHで接続するための作業場所です。このworkspaceではサーバープロセスは動作していません
+<ul>
+<li>実務では、このように特定のサーバーへのアクセス元が限定されていることがあるため、それを模しています</li>
+</ul>
+</li>
+<li>ベースマシンからSSHでログインして利用します</li>
+<li>Linuxディストリビューションは Alma Linux9 です</li>
+<li>セキュリティの都合上、このマシンからはインターネットには繋がりません。ですのでツールのインストールは出来ないのでご注意ください</li>
+</ul>
+<h4 id="4-%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BCapp">4) アプリケーションサーバー（app）</h4>
+<ul>
+<li>アプリケーションロジックの動作するサーバーです。Apache Web Server 内でPythonによるビジネスロジックが動作しています</li>
+<li>通常はworkspaceからSSHでログインします。しかし、ベースマシンからコンソール接続（IPアドレスを使わない接続）も可能です</li>
+<li>Linuxディストリビューションは Alma Linux9 です</li>
+<li>セキュリティの都合上、このマシンからはインターネットには繋がりません。ですのでツールのインストールは出来ないのでご注意ください</li>
+</ul>
+<h4 id="5-%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BCdb">5) データベースサーバー（db）</h4>
+<ul>
+<li>データベースサーバーです。appの利用するデータが格納されています。MariaDBが動作しています</li>
+<li>通常はworkspaceからSSHでログインします。しかし、ベースマシンからコンソール接続（IPアドレスを使わない接続）も可能です</li>
+<li>Linuxディストリビューションは Alma Linux9 です</li>
+<li>セキュリティの都合上、このマシンからはインターネットには繋がりません。ですのでツールのインストールは出来ないのでご注意ください</li>
+</ul>
+<h4 id="6-web%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BCweb">6) Webサーバー（web）</h4>
+<ul>
+<li>インターネットとの出入り口になるWebサーバーで、Nginxで動作しています</li>
+<li>Webサイトの利用者（受講者PC）からのブラウザアクセスは、このWebサーバーを経由してappに繋がります</li>
+<li>後述の監視サーバーへの接続と、ユーザー認証も担当しています</li>
+<li>このサーバープロセスは、ベースマシン上で動作しています</li>
+</ul>
+<h4 id="7-%E7%9B%A3%E8%A6%96%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BCnetdata">7) 監視サーバー（netdata）</h4>
+<ul>
+<li>Webサイトのリソース監視を行うサーバーです。Netdataというオープンソースの製品を使っています</li>
+<li>このサーバープロセスはベースマでン上で動作しています</li>
+<li>受講者PCのブラウザからログインできます。通常のポート番号とは異なるので注意しましょう</li>
+</ul>
+<h4 id="8-apache-guacamole%E3%82%8F%E3%81%8B%E3%82%82%E3%82%8C">8) Apache Guacamole（わかもれ）</h4>
+<ul>
+<li>演習環境に入るための踏み台サーバーです。演習中は特に意識する必要はありません</li>
+</ul>
+<h3 id="2-%E5%90%84%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%81%AE%E6%83%85%E5%A0%B1%E7%A2%BA%E8%AA%8D">2. 各サーバーの情報確認</h3>
+<h4 id="ip%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9%E3%83%9B%E3%82%B9%E3%83%88%E5%90%8D%E3%81%AE%E7%A2%BA%E8%AA%8D">IPアドレス、ホスト名の確認</h4>
+<ul>
+<li>上記で紹介したサーバーのIPアドレスやホスト名を構成図上で確認しましょう。必要になるたびに構成図を参照してもよいですし、メモ帳などにまとめて控えておいても構いません。頻繁に必要になるはずなので、扱いやすい方法を自分で考えましょう</li>
+<li>appサーバー、dbサーバー、workspaceサーバーの情報は、「ベースマシン」上で以下のコマンドを実行することでも確認できます</li>
+</ul>
+<pre class="hljs"><code><div>lxc list
+</div></code></pre>
+<ul>
+<li>以下は、実行例です。本演習ではIPv6は使用しないため、気にしなくて構いません</li>
+</ul>
+<pre class="hljs"><code><div>ec2-user@ip-10-0-131-89:~ -THISISNOTWORKSPACE- $ lxc list
++-----------+---------+----------------------+----------------------------------------------+-----------+-----------+
+|   NAME    |  STATE  |         IPV4         |                     IPV6                     |   TYPE    | SNAPSHOTS |
++-----------+---------+----------------------+----------------------------------------------+-----------+-----------+
+| app       | RUNNING | 10.87.227.78 (eth0)  | fd42:999d:228:3ae0:216:3eff:fe44:efaa (eth0) | CONTAINER | 0         |
++-----------+---------+----------------------+----------------------------------------------+-----------+-----------+
+| db        | RUNNING | 10.87.227.141 (eth0) | fd42:999d:228:3ae0:216:3eff:fefc:d2e4 (eth0) | CONTAINER | 0         |
++-----------+---------+----------------------+----------------------------------------------+-----------+-----------+
+| workspace | RUNNING | 10.87.227.167 (eth0) | fd42:999d:228:3ae0:216:3eff:fe45:5cae (eth0) | CONTAINER | 0         |
++-----------+---------+----------------------+----------------------------------------------+-----------+-----------+
+</div></code></pre>
+<ul>
+<li>各サーバーには、ログイン時に認証情報が必要になります。認証情報は、user1/password といった形で構成図に記載があるのでよく確認しておきましょう</li>
+</ul>
+<div class="danger">
+<p>演習のため、認証情報には非常に簡単なものを使っています。実務では、現場のセキュリティルールに従った強力な認証情報を使ってください</p>
+</div>
+<ul>
+<li>なお、各サーバー間でのpingは通じないことがあります。正常性確認のタイミングで、pingが通じるかどうかを確認しておくと、後で慌てずに済むかもしれません</li>
+</ul>
+<h3 id="3-workspace%E3%81%B8%E3%81%AE%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3">3. workspaceへのログイン</h3>
+<ul>
+<li>appサーバーやdbサーバーにログインするには、workspaceを介する必要があります。以下のコマンドで、workspaceにログインしましょう</li>
+</ul>
+<pre class="hljs"><code><div>ssh user1@workspace
+</div></code></pre>
+<ul>
+<li>認証情報は構成図から確認してください。上記コマンドにある「user1」の意味も理解しておきましょう</li>
+<li>確認が終わったらログアウトして、ベースマシンに戻ってください。この一連の作業で、ベースマシンやworkspaceのプロンプトを把握しておいてください
+<ul>
+<li>今後は、自分がどのサーバーで作業しているのかを必ず把握し、作業対象を間違えないようにしてください。作業対象の間違いは、実務でもよく起こるミスです</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-%E6%AD%A3%E5%B8%B8%E6%80%A7%E7%A2%BA%E8%AA%8D">4. 正常性確認</h3>
+<ul>
+<li>トラブルを発生させる前に、Webサイトの正常性を確認しておきます。以下を順番に実施し、Webサイトの正常稼働状態を把握しておきましょう</li>
+</ul>
+<h4 id="web%E3%82%B5%E3%82%A4%E3%83%88%E6%83%85%E5%A0%B1%E3%81%AE%E6%8A%8A%E6%8F%A1">Webサイト情報の把握</h4>
+<ul>
+<li>ベースマシンのホームディレクトリには、<code>get-public-hostname.sh</code>というシェルスクリプトがあります。これを実行してインターネットからの接続情報などを把握しておきましょう</li>
+<li>以下は実行結果のサンプルです（受講者ごとに以下の情報は異なります）</li>
+</ul>
+<pre class="hljs"><code><div>ec2-user@ip-10-0-131-89:~ -THISISNOTWORKSPACE- $ ./get-public-hostname.sh
+--- your informations ---
+
+your public internet hostname
+ec2-43-206-91-184.ap-northeast-1.compute.amazonaws.com
+
+your website
+ec2-43-206-91-184.ap-northeast-1.compute.amazonaws.com/myapp/
+
+your monitoring dashboard
+ec2-43-206-91-184.ap-northeast-1.compute.amazonaws.com:9999
+username: user1
+password: password
+
+your private address
+10.0.131.89
+</div></code></pre>
+<ul>
+<li>出力結果の意味は以下の通りです</li>
+</ul>
+<h5 id="your-public-internet-hostname">your public internet hostname</h5>
+<ul>
+<li>ec2-43-206-91-184.ap-northeast-1.compute.amazonaws.comは、インターネットから見たときのベースマシンのホスト名です</li>
+</ul>
+<h5 id="your-website">your website</h5>
+<ul>
+<li>ec2-43-206-91-184.ap-northeast-1.compute.amazonaws.com/myapp/は、今回トラブルの発生するWebサイトのURLです</li>
+<li>ブラウザからアクセスできるので、正常にWebサイトが表示されることを確認しておきましょう
+<ul>
+<li>表示されるとご認識頂けると思いますが、このWebサイトは以前に「Linux個人演習」で構築頂いたものと同じです（ただしサーバー構成は異なります）</li>
+</ul>
+</li>
+</ul>
+<div class="warning">
+<p>うまく表示されない場合、http:// でアクセスしているかを確認してください。まれに、ブラウザ貼り付け時に https:// になってしまっていることがあります。httpsではアクセスできません</p>
+</div>
+<h5 id="your-monitoring-dashboard">your monitoring dashboard</h5>
+<ul>
+<li>ec2-43-206-91-184.ap-northeast-1.compute.amazonaws.com:9999は、監視サーバーです。ブラウザからアクセスできます
+<ul>
+<li>your public internet hostname にポート番号9999が追加されているだけです</li>
+</ul>
+</li>
+<li>アクセスすると、ブラウザに「ログイン」というダイアログが出てくるので、以下の情報を入力してログインしてください</li>
+</ul>
+<pre class="hljs"><code><div>ユーザー名:  user1
+パスワード:  password
+</div></code></pre>
+<ul>
+<li>ログインが成功すると、Netdataのトップページが表示されます。パスワードの保存はしてもしなくても構いません</li>
+<li>表示されたページの右下に <strong>Skip and use the dashboard anonymously.</strong> という緑の文字があるので、そちらをクリックすると監視ダッシュボードが表示されます</li>
+</ul>
+<div class="warning">
+<p>緑の SignIn ボタンは押さないでください</p>
+</div>
+<ul>
+<li>監視状況がリアルタイムに更新されているはずです。もしされていない場合は左上の灰色の「Pausing」ボタンを押し、表示を「Playing」に変えればよいです</li>
+</ul>
+<h5 id="your-private-address">your private address</h5>
+<ul>
+<li>10.0.131.89 は、ベースマシンのプライベートIPアドレスです。通常は意識する必要はありませんが、講師から提示を求められたら受講者名とともに伝えてください。なお、<code>ip a</code>など通常のコマンドでも同じものが確認できます</li>
+</ul>
+<h4 id="%E5%90%84%E3%83%9B%E3%82%B9%E3%83%88%E3%81%B8%E3%81%AE%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3">各ホストへのログイン</h4>
+<ul>
+<li>
+<p>作業対象となる各ホストへのログインも実施してください</p>
+</li>
+<li>
+<p>まずはworkspaceにログインします。その後、以下のコマンドでappサーバーやdbサーバーにログインしてください</p>
+<ul>
+<li>appサーバーにログインしたい場合 <code>ssh app</code></li>
+<li>dbサーバーにログインしたい場合 <code>ssh db</code></li>
+</ul>
+</li>
+<li>
+<p>sshコマンドの実行時に以下のようなメッセージが出ることがあります。これはSSHでの初回接続時のセキュリティ機能です。この演習では yes を入力して先に進んでください</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>The authenticity of host 'db (fd42:999d:228:3ae0:216:3eff:fefc:d2e4)' can't be established.
+ED25519 key fingerprint is SHA256:TaO2Zk5ta59gteofq2Nj5gxl7OoGrnUVOA3ztAFCtMs.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+</div></code></pre>
+<ul>
+<li>appでサーバーでは<code>httpd</code>サービスが、dbサーバーでは<code>mariadb</code>サービスが起動しています。<code>systemctl</code>を使って、動作状況を確認しておきましょう。どんなコマンドを実行すれば良いかは、これまでの研修を思い出してください</li>
+<li>各ホストでの正常性確認が終わったら、ベースマシにに戻っておいてください（コマンドプロンプトを見てベースマシンであることを認識してください）</li>
+</ul>
+<h3 id="5-%E5%88%9D%E6%9C%9F%E5%8C%96%E5%87%A6%E7%90%86initsh%E3%81%AE%E5%AE%9F%E8%A1%8C">5. 初期化処理（init.shの実行）</h3>
+<ul>
+<li>現状把握が全て終わったら、初期化処理をします</li>
+</ul>
+<div class="danger">
+<p>init.shの実行タイミングは、講師から指示があります。必ず講師の指示に従ってください</p>
+</div>
+<ul>
+<li>ホームディレクトリの<code>init.sh</code> を実行してください。スクリプトの実行方法は「実務で使えるLinux 入門編」で取り上げていますので、思い出しましょう</li>
+<li>実行には少し時間がかかるかもしれません。プロンプトが表示されれば、実行は終了です</li>
+</ul>
+<h3 id="%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E5%8B%95%E7%94%BB%E8%A6%96%E8%81%B4">（オプション）動画視聴</h3>
+<ul>
+<li>現状把握が早く終わった方は、第3章の動画を視聴しましょう
+<ul>
+<li>視聴しなくとも演習には影響ありません</li>
+</ul>
+</li>
+</ul>
+<h2 id="iv-%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%AE%E5%AE%9F%E8%B7%B5">IV. トラブルシューティングの実践</h2>
+<ul>
+<li>講師からの操作により、全受講者の演習環境にトラブルが発生します</li>
+<li>ここから先は、これまでの学習内容を駆使して手探りでのトラブルシューティングが始まります</li>
+<li>起きているトラブルは一つとは限りません。また、あるトラブルを解決するためには先に別のトラブルを解決しないといけないかもしれません。仮説を立て、コマンドを実行して仮説を確認・実証し、修正しながら進めてください</li>
+<li>研修システムのスケジュール通りに時間を区切りながら、時間内のトラブル解決を目指しましょう</li>
+</ul>
+<h3 id="1-%E7%8A%B6%E6%B3%81%E7%A2%BA%E8%AA%8D">1. 状況確認</h3>
+<ul>
+<li>WebサイトのURLにアクセスし、Webサイトが表示されなくなっていることを確認しましょう。ブラウザのリロードでも、新たにURLを貼り直しても、どちらでも構いません</li>
+<li>この時点で、監視サーバーへのアクセスも出来なくなっています。構成図をよく見て、なぜそうなっているのかを考えましょう</li>
+<li>トラブル発生時時でわかっているのは、上記2点だけです。構成図や現状把握で取得した情報を元に、Webサイトを復旧してください</li>
+</ul>
+<h3 id="2-%E3%81%AF%E3%81%98%E3%82%81%E3%81%AE%E4%B8%80%E6%AD%A9">2. はじめの一歩</h3>
+<ul>
+<li>トラブルシューティングはどこから始めても構いませんが、最初のうちは手がかりが少なく何から始めていいかわかりづらいかもしれません。ブラウザに表示されているエラーメッセージから判断して行動を起こしてください</li>
+<li>app/dbの各サーバーにも何か起きているかもしれません。workspaceを経由してログインし、状況を確認してください</li>
+</ul>
+<h3 id="3-%E5%BF%85%E8%A6%81%E3%81%AB%E3%81%AA%E3%82%8B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%81%AE%E8%A3%9C%E8%B6%B3">3. 必要になるコマンドについての補足</h3>
+<ul>
+<li>トラブルシューティングに必要な知識や技術は、これまでの研修で得られていますが、一部今回の演習環境に独特な使用やこれまでの研修で明確に取り上げていないコマンドを使用することがあるので、以下に補足をします</li>
+</ul>
+<h4 id="app%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%82%84db%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%81%B8%E3%81%AEssh%E3%82%92%E4%BD%BF%E3%82%8F%E3%81%AA%E3%81%84%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3">appサーバーやdbサーバーへの、SSHを使わないログイン</h4>
+<ul>
+<li>トラブルシュートを進めていくとappサーバーやdbサーバーへのログインが必要になると思いますが、SSHでのログイができなくなっているかもしれません。その場合は、「ベースマシン」から以下のコマンドでログインでききます。認証情報は不要です</li>
+</ul>
+<pre class="hljs"><code><div>lxc exec app bash
+</div></code></pre>
+<pre class="hljs"><code><div>lxc exec db bash
+</div></code></pre>
+<ul>
+<li>ログインした後の操作はworkspaceからSSHでログインしたときと同じですが、rootユーザーでのログインになっていることに注意してください</li>
+</ul>
+<h4 id="%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%95%E3%82%A7%E3%83%BC%E3%82%B9-nic-%E3%81%AE%E3%83%AA%E3%83%B3%E3%82%AF%E3%82%A2%E3%83%83%E3%83%97%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">ネットワークインターフェース (NIC) のリンクアップについて</h4>
+<ul>
+<li>トラブルの原因の一つにサーバーのネットワークのリンクダウンが考えられる場合は、以下のコマンドで指定したNICをリンクアップできます</li>
+</ul>
+<pre class="hljs"><code><div>ip link set eth0 up 
+</div></code></pre>
+<h3 id="4-%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%AE%E3%83%92%E3%83%B3%E3%83%88">4. トラブルシューティングのヒント</h3>
+<ul>
+<li>以下には、作業時のヒントを記載しています。チャレンジを楽しみたい方は、見ずに進めても構いません</li>
+</ul>
+<h4 id="%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%82%92%E8%B5%B7%E5%8B%95%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%A8%E3%81%8D%E3%81%AF">サーバーを起動できないときは</h4>
+<ul>
+<li>
+<p>サーバーを起動するコマンドを実行したにも関わらず起動ができないときは、エラーメッセージが必ずどこかに記載されています。エラーの記載されるファイルであるエラーログファイルの場所は、製品によって異なります。これまでの研修で取り上げたファイル検索コマンドやネットの情報などを駆使して、エラーメッセージを探し対応してください</p>
+<div class="details ヒント">
+<p>一般的に Red Hat系のディストリビューションでは、OSの動作に関するログは /var/log/messages にあります。また、MariaDBなど製品のログは、同じく/var/logディレクトリ内にあることが多いです</p>
+</div>
+</li>
+</ul>
+<h4 id="%E5%85%A8%E3%81%A6%E5%BE%A9%E6%97%A7%E3%81%97%E3%81%9F%E3%81%AF%E3%81%9A%E3%81%AA%E3%81%AE%E3%81%AB%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E3%81%8B%E3%82%89%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84">全て復旧したはずなのにブラウザからアクセスできない</h4>
+<ul>
+<li>全てのトラブルを解決したはずなのにブラウザからWebサイトにアクセス出来ない、という事態になるかもしれません。その時は、構成図をもう一度よく見直し、対応を忘れている要素がないかを確認してください</li>
+<li>appサーバー内で以下のコマンドを実行してWebサイトのコンテンツが表示されたら、Webサイト自体は問題なく稼働しています。復旧できていない要素がまだ残っているということです。構成図をよく見ながら、トラブルシューティングを再開しましょう</li>
+</ul>
+<pre class="hljs"><code><div>curl http://localhost/myapp/
+</div></code></pre>
+<ul>
+<li>ブラウザに表示されているエラーメッセージもよく確認しましょう</li>
+</ul>
+<h4 id="%E8%A8%AD%E5%AE%9A%E5%A4%89%E6%9B%B4%E3%81%AF%E4%B8%80%E5%BA%A6%E3%81%AB%E5%A4%9A%E3%81%8F%E3%82%92%E5%AE%9F%E6%96%BD%E3%81%97%E3%81%AA%E3%81%84">設定変更は、一度に多くを実施しない</h4>
+<ul>
+<li>サーバーの設定を変えた方がいいと思ったら、変えましょう。ただし、一度に複数箇所を変更するのはお勧めしません。一度に変更する箇所は一つにし、調査の分岐点を多く作らないようにしましょう</li>
+</ul>
+<h3 id="5-%E5%BE%A9%E6%97%A7%E3%81%AE%E5%A0%B1%E5%91%8A%E5%89%8D%E3%81%AB">5. 復旧の報告前に</h3>
+<ul>
+<li>受講者PCのブラウザからWebサイトと監視サーバーへのアクセスが出来るようになったら、トラブルは一旦解決しています</li>
+<li>同じトラブルが再発しないかを確認するために、「ベースマシン」で以下のコマンドを実行してapサーバーとdbサーバーをリブートしてください</li>
+</ul>
+<pre class="hljs"><code><div>lxc restart app
+</div></code></pre>
+<pre class="hljs"><code><div>lxc restart db
+</div></code></pre>
+<ul>
+<li>状況を確認し、トラブルが起きているようであれば原因を調査して修復してください</li>
+<li>ここまで完了すれば、トラブルシューティング作業は完了です。</li>
+</ul>
+<hr>
+<h2 id="v-%E9%9A%9C%E5%AE%B3%E5%A0%B1%E5%91%8A%E6%9B%B8%E3%81%AE%E4%BD%9C%E6%88%90">V. 障害報告書の作成</h2>
+<ul>
+<li>トラブルシューティングが終わったら、障害報告書を作成します。以下の項目を含めてください</li>
+<li>障害報告書には、再発防止策を含める必要があります。今回は演習なので書けることは限られてきますが、同じトラブルを起こさないように取れる対策を考えてください</li>
+<li>記載内容の検討にあたり、インターネットの情報を検索するのは構いません</li>
+<li>生成AIサービスの活用は構いませんが、報告書の作成への使用は禁止します</li>
+</ul>
+<h4 id="%E5%A0%B1%E5%91%8A%E6%9B%B8%E3%81%AE%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB">報告書のタイトル</h4>
+<ul>
+<li>（例）「弊社Webサイトにおける障害報告書」</li>
+</ul>
+<h4 id="%E6%A6%82%E8%A6%81">概要</h4>
+<ul>
+<li>どんなトラブルがいつ発生していつ解決したかを簡潔に記載します</li>
+<li>詳細はこれから記載するので、ここでは不要です</li>
+</ul>
+<h4 id="%E7%99%BA%E7%94%9F%E6%97%A5%E6%99%82%E3%81%A8%E5%BE%A9%E6%97%A7%E6%97%A5%E6%99%82">発生日時と復旧日時</h4>
+<ul>
+<li>トラブルの発生が確認された日時と、復旧確認の報告をした時間を記載してください</li>
+<li>書式はお任せしますが、わかりやすく記載しましょう</li>
+</ul>
+<h4 id="%E5%BD%B1%E9%9F%BF%E7%AF%84%E5%9B%B2">影響範囲</h4>
+<ul>
+<li>今回のトラブルの影響範囲を記載します。ただ今回は演習のため、簡単な表現で構いません</li>
+</ul>
+<h4 id="%E7%B5%8C%E7%B7%AF">経緯</h4>
+<ul>
+<li>今回の事象の発発から解決までを、時系列で記載してください。何時何分、何が起こったか、何をしたか、ということを記載します</li>
+<li>（例）2025年8月5日午前11時 Webサイトへのアクセスができないとお客様から多数報告あり</li>
+</ul>
+<h4 id="%E5%8E%9F%E5%9B%A0">原因</h4>
+<ul>
+<li>複数の原因があったと思います。わかりやすく箇条書きで記載してください</li>
+</ul>
+<h4 id="%E5%AF%BE%E5%87%A6%E5%86%85%E5%AE%B9%E3%81%A8%E6%96%BD%E3%81%97%E3%81%9F%E5%86%8D%E7%99%BA%E9%98%B2%E6%AD%A2%E7%AD%96">対処内容と施した再発防止策</h4>
+<ul>
+<li>それぞれの原因に対し、どういう設定や作業を行ってトラブルシュートをしたかを記載します</li>
+<li>また、同じトラブルが再度発生しないようにどのような対策を取ったかも記載します</li>
+</ul>
+<h2 id="%E6%BC%94%E7%BF%92%E7%B5%82%E4%BA%86">演習終了</h2>
+<ul>
+<li>以上で演習は終了です。お疲れ様でした。日報では、今日の1日を振り返りましょう</li>
+</ul>
+<hr>
+<h2 id="appendix">- Appendix -</h2>
+<ul>
+<li>以下はより詳細な解説であり、演習の遂行には不要です。演習が早く終わった場合やより詳細を知りたい方はご確認ください</li>
+</ul>
+<h2 id="%E6%A7%8B%E6%88%90%E8%A9%B3%E7%B4%B0">構成詳細</h2>
+<p><img src="file:///workspaces/linux-tshoot-lab/guide/src/linuxintro-tshoot-structure-student-detail.drawio.svg" alt=""></p>
+<h3 id="%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E6%A7%8B%E6%88%90%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">サーバー構成について</h3>
+<ul>
+<li>アプリケーションサーバーやデータベースサーバーは、実務の環境に似せるためにそれぞれ別のホストとして構成しています</li>
+<li>ただし今回の演習環境であるAmaon Web Services(AWS)では、VM内でのVMの起動（NestedVM）が仕様上構成できないため、LXCコンテナを使用しました</li>
+<li>LXCはLinux Container という機能で、Linuxでのコンテナ型仮想化の仕組みです。古くから軽量VMとして利用されてきました
+<ul>
+<li>ちなみにコンテナソリューションとして有名なDockerは、登場した当初はLXCのラッパーでした</li>
+</ul>
+</li>
+<li>LXCはDockerと異なりsystemdを動作させることができるので、通常のVMとほぼ変わらない使い勝手を実現します。まさに今回のような用途にはうってつけです</li>
+</ul>
+<h3 id="%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E6%A7%8B%E6%88%90%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">ネットワーク構成について</h3>
+<ul>
+<li>ベースマシンで稼働しているNginxは、apサーバーへのリバースプロキシおよびNetdataの認証サーバーとして機能しています
+<ul>
+<li>LXCコンテナは、デフォルトではコンテナ外部からの通信は受け付けません</li>
+</ul>
+</li>
+<li>LXCコンテナへのパケット転送は、LXCの設定でも可能なのですが、設定が複雑になるのと演習内容以外での予備知識が必要になるため今回は利用しませんでした</li>
+<li>Netdataは、インターネットからの直アクセスになるためユーザー認証を設けています。ちなみにポート番号も19999から9999へ変更しています</li>
+<li>上記の設定は、ベースマシンのNginxのコンフィグを見ると確認できるので、興味のある方はチェックしてみてください</li>
+</ul>
+<h3 id="lxc%E3%81%AE%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">LXCのコマンドについて</h3>
+<ul>
+<li>演習中に実行した<code>lxc exec</code>は、LXCコンテナ内でコマンドを実行するコマンドです。例えば<code>lxc exec db bash</code>は、dbコンテナ内でbashを実行する、つまりdbコンテナに入りシェルを操作する、ということを意味しています。他にも<code>lxc exec db -- ls /</code>と実行すると、dbコンテナのルートディレクトリの一覧を表示できます。時間があればいろいろ試してみてください</li>
+</ul>
+
+</body>
+</html>
